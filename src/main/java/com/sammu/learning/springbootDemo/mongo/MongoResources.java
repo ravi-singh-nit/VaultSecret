@@ -5,6 +5,10 @@ package com.sammu.learning.springbootDemo.mongo;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -52,6 +56,25 @@ public class MongoResources {
 
         userRepository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/v1/users")
+    public ResponseEntity<Page<User>> getUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id,asc") String sort) {
+
+        String[] sortParams = sort.split(",");
+        Sort sortObj = Sort.by(
+                Sort.Direction.fromString(sortParams[1]),
+                sortParams[0]
+        );
+
+        Pageable pageable = PageRequest.of(page, size, sortObj);
+
+        Page<User> users = userRepository.findAll(pageable);
+
+        return ResponseEntity.ok(users);
     }
 
 
