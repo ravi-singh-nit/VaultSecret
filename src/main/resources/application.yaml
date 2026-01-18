@@ -1,20 +1,23 @@
 spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:8191/mydb
   application:
     name: app
 #this requires fro specific spring boot les than 3.5.x
-  config:
-    import: vault://
+#  config:
+#    import: vault://
 # set VAULT_ADDR and VAULT_TOKEN using export VAULT_ADDR enviornment variablrs
-  cloud:
-    vault:
-      uri: ${VAULT_ADDR}
-      token: ${VAULT_TOKEN}
-      kv:
-        enabled: true
-        backend: secret
-        default-context: app
+#  cloud:
+#    vault:
+#      uri: ${VAULT_ADDR}
+#      token: ${VAULT_TOKEN}
+#      kv:
+#        enabled: true
+#        backend: secret
+#        default-context: app
 
-logging:
-  level:
-    org.springframework.cloud.vault: DEBUG
-    org.springframework.vault: DEBUG
+#logging:
+#  level:
+#    org.springframework.cloud.vault: DEBUG
+#    org.springframework.vault: DEBUG
