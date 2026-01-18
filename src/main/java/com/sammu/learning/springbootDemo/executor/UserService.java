@@ -16,7 +16,7 @@ public class UserService {
     @Async("appExecutor")
     public CompletableFuture<User> createUser(User user) throws InterruptedException {
         // simulate work
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         return CompletableFuture.completedFuture(userRepository.save(user));
     }
   // run from  terminal
