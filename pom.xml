@@ -35,6 +35,13 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- kafka dependency  -->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+
+
 		<!-- lombok dependency  -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
